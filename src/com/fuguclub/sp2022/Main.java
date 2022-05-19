@@ -6,6 +6,10 @@ import java.util.Random;
 public class Main {
     public static Random rand;
     public static String answerText;
+    public static String firstBandText;
+    public static String secondBandText;
+    public static int firstBand;
+    public static int secondBand;
     public static String fakeAnswerText;
     public static int answerButton;
     public static String multiplier;
@@ -58,6 +62,7 @@ public class Main {
                 color = new Color(218, 66, 245);
                 break;
             case 9:
+
                 multiplier = "00000000";
                 color = Color.gray;
                 break;
@@ -89,13 +94,21 @@ public class Main {
         System.out.println("init: generateRightAnswer");
 
         generateMainAnswer();
-        int firstBand = bandNumber;
-        String firstBandText = String.valueOf(firstBand);
+        if(bandNumber != 1) {
+            firstBand = bandNumber - 1;
+            firstBandText = String.valueOf(firstBand);
+        } else {
+            firstBandText = "";
+        }
         firstBandColor = color;
 
         generateMainAnswer();
-        int secondBand = bandNumber;
-        String secondBandText = String.valueOf(secondBand);
+        if(bandNumber != 1) {
+            secondBand = bandNumber - 1;
+            secondBandText = String.valueOf(secondBand);
+        } else {
+            secondBandText = "";
+        }
         secondBandColor = color;
 
         generateMainAnswer();
