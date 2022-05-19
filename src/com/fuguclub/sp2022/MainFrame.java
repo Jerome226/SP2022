@@ -34,7 +34,7 @@ public class MainFrame extends JFrame implements ActionListener{
 
         ImageIcon checkmarkImage = new ImageIcon("checkmark.png");
         Image checkmark2 = checkmarkImage.getImage();
-        Image checkmarkResized = checkmark2.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        Image checkmarkResized = checkmark2.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
         ImageIcon checkmark = new ImageIcon(checkmarkResized);
 
         labelAnswer.setText("Bonne réponse! Bravo");
@@ -49,7 +49,7 @@ public class MainFrame extends JFrame implements ActionListener{
 
         ImageIcon wrongImage = new ImageIcon("wrong.png");
         Image wrong2 = wrongImage.getImage();
-        Image wrongResized = wrong2.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        Image wrongResized = wrong2.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
         ImageIcon wrong = new ImageIcon(wrongResized);
 
         labelAnswer.setText("Mauvaise réponse! Ré-essai");
@@ -62,7 +62,7 @@ public class MainFrame extends JFrame implements ActionListener{
     public void generateWindowSize(){
 
         int frameWidth = getWidth();
-        int buttonBorderWidth = frameWidth / 5;
+        int buttonBorderWidth = frameWidth / 7;
 
         panelBottomEast.setPreferredSize(new Dimension(buttonBorderWidth, 100));
         panelBottomWest.setPreferredSize(new Dimension(buttonBorderWidth, 100));
@@ -108,6 +108,9 @@ public class MainFrame extends JFrame implements ActionListener{
     labelBottom.setVisible(true);
 
     labelAnswer = new JLabel();
+    labelAnswer.setPreferredSize(new Dimension(80, 80));
+    labelAnswer.setHorizontalAlignment(JLabel.CENTER);
+    labelAnswer.setVerticalAlignment(JLabel.CENTER);
 
     firstButton = new JButton();
     //firstButton.setText(answerText);
@@ -142,37 +145,57 @@ public class MainFrame extends JFrame implements ActionListener{
     switch(answerButton) {
         case 1:
             firstButton.setText(answerText);
-            secondButton.setText("dummy");
-            thirdButton.setText("dummy");
-            fourthButton.setText("dummy");
-            fifthButton.setText("dummy");
+            generateWrongAnswer();
+            secondButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            thirdButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fourthButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fifthButton.setText(fakeAnswerText);
         break;
         case 2:
-            firstButton.setText("dummy");
+            generateWrongAnswer();
+            firstButton.setText(fakeAnswerText);
             secondButton.setText(answerText);
-            thirdButton.setText("dummy");
-            fourthButton.setText("dummy");
-            fifthButton.setText("dummy");
+            generateWrongAnswer();
+            thirdButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fourthButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fifthButton.setText(fakeAnswerText);
         break;
         case 3:
-            firstButton.setText("dummy");
-            secondButton.setText("dummy");
+            generateWrongAnswer();
+            firstButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            secondButton.setText(fakeAnswerText);
             thirdButton.setText(answerText);
-            fourthButton.setText("dummy");
-            fifthButton.setText("dummy");
+            generateWrongAnswer();
+            fourthButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fifthButton.setText(fakeAnswerText);
         break;
         case 4:
-            firstButton.setText("dummy");
-            secondButton.setText("dummy");
-            thirdButton.setText("dummy");
+            generateWrongAnswer();
+            firstButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            secondButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            thirdButton.setText(fakeAnswerText);
             fourthButton.setText(answerText);
-            fifthButton.setText("dummy");
+            generateWrongAnswer();
+            fifthButton.setText(fakeAnswerText);
         break;
         case 5:
-            firstButton.setText("dummy");
-            secondButton.setText("dummy");
-            thirdButton.setText("dummy");
-            fourthButton.setText("dummy");
+            generateWrongAnswer();
+            firstButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            secondButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            thirdButton.setText(fakeAnswerText);
+            generateWrongAnswer();
+            fourthButton.setText(fakeAnswerText);
             fifthButton.setText(answerText);
         break;
     }
@@ -218,6 +241,8 @@ public class MainFrame extends JFrame implements ActionListener{
     panelCenter.setBackground(Color.red);
     panelCenter.setOpaque(true);
     panelCenter.add(panelCenterBottom,BorderLayout.SOUTH);
+    //panelCenter.add(panelCenterCenter,BorderLayout.CENTER);
+    //panelCenter.add(label,BorderLayout.NORTH);
 
     panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(100, 300));
