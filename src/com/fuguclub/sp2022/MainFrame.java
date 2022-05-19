@@ -65,8 +65,8 @@ public class MainFrame extends JFrame implements ActionListener{
         labelAnswer.setVisible(true);
     }
 
-    public void generateButtonText(){
-        System.out.println("init: generateButtonText");
+    public void generateAnswer(){
+        System.out.println("init: generateAnswer");
 
         answerButton = rand.nextInt((5 - 1) + 1) + 1;
 
@@ -157,8 +157,8 @@ public class MainFrame extends JFrame implements ActionListener{
         labelResistor.setIcon(resistor);
     }
 
-    public void generateBandPanel(){
-        System.out.println("init: generateBandPanel");
+    public void generateBandColor(){
+        System.out.println("init: generateBandColor");
 
         panelFirstBand = new JPanel();
         panelFirstBand.setBackground(firstBandColor);
@@ -242,9 +242,9 @@ public class MainFrame extends JFrame implements ActionListener{
     fifthButton.addActionListener(this);
     fifthButton.setVisible(true);
 
-    generateButtonText();
+    generateAnswer();
 
-    generateBandPanel();
+    generateBandColor();
 
     JPanel nonVisiblePanel = new JPanel();
     nonVisiblePanel.setVisible(false);

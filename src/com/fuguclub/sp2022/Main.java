@@ -24,8 +24,8 @@ public class Main {
     public static Color multiplierBandColor;
     public static Color toleranceBandColor;
 
-    public static void generateMainAnswer(){
-        System.out.println("init: generateMainAnswer");
+    public static void generateMainValues(){
+        System.out.println("init: generateMainValues");
 
         bandNumber = rand.nextInt((9 - 1) + 1) + 1;
 
@@ -93,7 +93,7 @@ public class Main {
     public static void generateRightAnswer(){
         System.out.println("init: generateRightAnswer");
 
-        generateMainAnswer();
+        generateMainValues();
         if(bandNumber != 1) {
             firstBand = bandNumber - 1;
             firstBandText = String.valueOf(firstBand);
@@ -102,7 +102,7 @@ public class Main {
         }
         firstBandColor = color;
 
-        generateMainAnswer();
+        generateMainValues();
         if(bandNumber != 1) {
             secondBand = bandNumber - 1;
             secondBandText = String.valueOf(secondBand);
@@ -111,11 +111,11 @@ public class Main {
         }
         secondBandColor = color;
 
-        generateMainAnswer();
+        generateMainValues();
         String multiplierBand = multiplier;
         multiplierBandColor = color;
 
-        generateMainAnswer();
+        generateMainValues();
         String toleranceBand = tolerance;
         toleranceBandColor = lastColor;
 
@@ -131,7 +131,7 @@ public class Main {
     public static void generateWrongAnswer(){
         System.out.println("init: generateWrongAnswer");
 
-        generateMainAnswer();
+        generateMainValues();
         int fakeNumber = rand.nextInt((99 - 1) + 1) + 1;
         String fakeMultiplier = multiplier;
         String fakeTolerance = tolerance;
