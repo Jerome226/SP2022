@@ -126,7 +126,7 @@ public class Main {
         } else {
             answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";
         }
-        System.out.println(answerText);
+        System.out.println("answerText: " + answerText);
     }
 
     public static void generateWrongAnswer(){
@@ -138,17 +138,15 @@ public class Main {
         String fakeTolerance = tolerance;
 
         fakeAnswerText = fakeNumber + fakeMultiplier + "Ω (Tolérance: " + fakeTolerance + ")";
-        System.out.println(fakeAnswerText);
+        System.out.println("fakeAnswerText: " + fakeAnswerText);
     }
 
     public static void main(String[] args) {
     System.out.println("init: Main");
 
     rand = new Random();
-    answerButton = rand.nextInt((5 - 1) + 1) + 1;
 
     generateRightAnswer();
-    generateWrongAnswer();
 
     //Frame
     MainFrame frame = new MainFrame();

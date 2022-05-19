@@ -59,6 +59,70 @@ public class MainFrame extends JFrame implements ActionListener{
         labelAnswer.setVisible(true);
     }
 
+    public void generateButtonText(){
+        System.out.println("init: generateButtonText");
+
+        answerButton = rand.nextInt((5 - 1) + 1) + 1;
+
+        switch(answerButton) {
+            case 1:
+                firstButton.setText(answerText);
+                generateWrongAnswer();
+                secondButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                thirdButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fourthButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fifthButton.setText(fakeAnswerText);
+                break;
+            case 2:
+                generateWrongAnswer();
+                firstButton.setText(fakeAnswerText);
+                secondButton.setText(answerText);
+                generateWrongAnswer();
+                thirdButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fourthButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fifthButton.setText(fakeAnswerText);
+                break;
+            case 3:
+                generateWrongAnswer();
+                firstButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                secondButton.setText(fakeAnswerText);
+                thirdButton.setText(answerText);
+                generateWrongAnswer();
+                fourthButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fifthButton.setText(fakeAnswerText);
+                break;
+            case 4:
+                generateWrongAnswer();
+                firstButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                secondButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                thirdButton.setText(fakeAnswerText);
+                fourthButton.setText(answerText);
+                generateWrongAnswer();
+                fifthButton.setText(fakeAnswerText);
+                break;
+            case 5:
+                generateWrongAnswer();
+                firstButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                secondButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                thirdButton.setText(fakeAnswerText);
+                generateWrongAnswer();
+                fourthButton.setText(fakeAnswerText);
+                fifthButton.setText(answerText);
+                break;
+        }
+    }
+
     public void generateWindowSize(){
 
         int frameWidth = getWidth();
@@ -142,63 +206,7 @@ public class MainFrame extends JFrame implements ActionListener{
     fifthButton.addActionListener(this);
     fifthButton.setVisible(true);
 
-    switch(answerButton) {
-        case 1:
-            firstButton.setText(answerText);
-            generateWrongAnswer();
-            secondButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            thirdButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fourthButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fifthButton.setText(fakeAnswerText);
-        break;
-        case 2:
-            generateWrongAnswer();
-            firstButton.setText(fakeAnswerText);
-            secondButton.setText(answerText);
-            generateWrongAnswer();
-            thirdButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fourthButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fifthButton.setText(fakeAnswerText);
-        break;
-        case 3:
-            generateWrongAnswer();
-            firstButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            secondButton.setText(fakeAnswerText);
-            thirdButton.setText(answerText);
-            generateWrongAnswer();
-            fourthButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fifthButton.setText(fakeAnswerText);
-        break;
-        case 4:
-            generateWrongAnswer();
-            firstButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            secondButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            thirdButton.setText(fakeAnswerText);
-            fourthButton.setText(answerText);
-            generateWrongAnswer();
-            fifthButton.setText(fakeAnswerText);
-        break;
-        case 5:
-            generateWrongAnswer();
-            firstButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            secondButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            thirdButton.setText(fakeAnswerText);
-            generateWrongAnswer();
-            fourthButton.setText(fakeAnswerText);
-            fifthButton.setText(answerText);
-        break;
-    }
+    generateButtonText();
 
     //GUI
     this.setTitle("School Project 2022");
