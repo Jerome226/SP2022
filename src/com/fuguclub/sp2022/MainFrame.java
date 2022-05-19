@@ -254,6 +254,7 @@ public class MainFrame extends JFrame implements ActionListener{
 
     generateWindowSize();
     this.addComponentListener(new frameResized());
+    this.addWindowStateListener(new frameResizedIcon());
 
     this.setContentPane(panel);
     this.setVisible(true);
@@ -283,6 +284,13 @@ public class MainFrame extends JFrame implements ActionListener{
             generateWindowSize();
         }
 
+    }
+
+    public class frameResizedIcon implements WindowStateListener {
+        @Override
+        public void windowStateChanged(WindowEvent e) {
+            generateWindowSize();
+        }
     }
 
     @Override

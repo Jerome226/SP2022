@@ -8,7 +8,7 @@ public class Main {
     public static String answerText;
     public static String fakeAnswerText;
     public static int answerButton;
-    public static int multiplier;
+    public static String multiplier;
     public static Color color;
     public static Color lastColor;
     public static int bandNumber;
@@ -26,43 +26,43 @@ public class Main {
 
         switch(bandNumber) {
             case 1:
-                multiplier = 1;
+                multiplier = "";
                 color = Color.black;
                 break;
             case 2:
-                multiplier = 10;
+                multiplier = "0";
                 color = new Color(69, 42, 14);
                 break;
             case 3:
-                multiplier = 100;
+                multiplier = "00";
                 color = Color.red;
                 break;
             case 4:
-                multiplier = 1000;
+                multiplier = "000";
                 color = Color.orange;
                 break;
             case 5:
-                multiplier = 10000;
+                multiplier = "0000";
                 color = Color.yellow;
                 break;
             case 6:
-                multiplier = 100000;
+                multiplier = "00000";
                 color = Color.green;
                 break;
             case 7:
-                multiplier = 1000000;
+                multiplier = "000000";
                 color = Color.blue;
                 break;
             case 8:
-                multiplier = 10000000;
+                multiplier = "0000000";
                 color = new Color(218, 66, 245);
                 break;
             case 9:
-                multiplier = 100000000;
+                multiplier = "00000000";
                 color = Color.gray;
                 break;
             case 10:
-                multiplier = 1000000000;
+                multiplier = "000000000";
                 color  = Color.white;
                 break;
         }
@@ -99,27 +99,27 @@ public class Main {
         secondBandColor = color;
 
         generateMainAnswer();
+        String multiplierBand = multiplier;
         multiplierBandColor = color;
 
         generateMainAnswer();
+        String toleranceBand = tolerance;
         toleranceBandColor = lastColor;
 
         String numberText = firstBandText + secondBandText;
-        int number = Integer.parseInt(numberText);
-        int answer = number * multiplier;
-        answerText = answer + "Ω (Tolérance: " + tolerance + " )";
+        answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";
         System.out.println(answerText);
     }
+
     public static void generateWrongAnswer(){
         System.out.println("init: generateWrongAnswer");
 
         generateMainAnswer();
         int fakeNumber = rand.nextInt((99 - 1) + 1) + 1;
-        int fakeMultiplier = multiplier;
+        String fakeMultiplier = multiplier;
         String fakeTolerance = tolerance;
 
-        int fakeAnswer = fakeNumber * fakeMultiplier;
-        fakeAnswerText = fakeAnswer + "Ω (Tolérance: " + fakeTolerance + " )";
+        fakeAnswerText = fakeNumber + fakeMultiplier + "Ω (Tolérance: " + fakeTolerance + ")";
         System.out.println(fakeAnswerText);
     }
 
