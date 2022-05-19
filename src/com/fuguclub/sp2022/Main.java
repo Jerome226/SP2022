@@ -62,7 +62,6 @@ public class Main {
                 color = new Color(218, 66, 245);
                 break;
             case 9:
-
                 multiplier = "00000000";
                 color = Color.gray;
                 break;
@@ -145,8 +144,6 @@ public class Main {
     System.out.println("init: Main");
 
     rand = new Random();
-
-    generateRightAnswer();
 
     //Frame
     MainFrame frame = new MainFrame();

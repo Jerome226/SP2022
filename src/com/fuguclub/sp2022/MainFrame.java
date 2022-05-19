@@ -64,6 +64,8 @@ public class MainFrame extends JFrame implements ActionListener{
 
         answerButton = rand.nextInt((5 - 1) + 1) + 1;
 
+        generateRightAnswer();
+
         switch(answerButton) {
             case 1:
                 firstButton.setText(answerText);
