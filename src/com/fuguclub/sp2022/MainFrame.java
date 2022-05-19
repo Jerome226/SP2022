@@ -16,6 +16,7 @@ public class MainFrame extends JFrame implements ActionListener{
     JButton fifthButton;
     JPanel panel;
     JPanel panelCenter;
+    JPanel panelCenterBottom;
     JPanel panelEast;
     JPanel panelWest;
     JPanel panelBottom;
@@ -26,28 +27,36 @@ public class MainFrame extends JFrame implements ActionListener{
     JLabel label;
     JLabel labelBottom;
     //JLabel labelBottom;
-    JLabel answerLabel;
+    JLabel labelAnswer;
 
     public void rightAnswer(){
         System.out.println("init: rightAnswer");
 
-        ImageIcon checkmark = new ImageIcon("checkmark.png");
+        ImageIcon checkmarkImage = new ImageIcon("checkmark.png");
+        Image checkmark2 = checkmarkImage.getImage();
+        Image checkmarkResized = checkmark2.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon checkmark = new ImageIcon(checkmarkResized);
 
-        answerLabel.setText("Bonne réponse! Bravo");
-        answerLabel.setIcon(checkmark);
-        answerLabel.setIconTextGap(40);
-        answerLabel.setVisible(true);
+        labelAnswer.setText("Bonne réponse! Bravo");
+        labelAnswer.setFont(new Font("Arial",Font.BOLD,60));
+        labelAnswer.setIcon(checkmark);
+        labelAnswer.setIconTextGap(40);
+        labelAnswer.setVisible(true);
     }
 
     public void wrongAnswer(){
         System.out.println("init: wrongAnswer");
 
-        ImageIcon wrong = new ImageIcon("wrong.png");
+        ImageIcon wrongImage = new ImageIcon("wrong.png");
+        Image wrong2 = wrongImage.getImage();
+        Image wrongResized = wrong2.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon wrong = new ImageIcon(wrongResized);
 
-        answerLabel.setText("Mauvaise réponse! Ré-essai");
-        answerLabel.setIcon(wrong);
-        answerLabel.setIconTextGap(40);
-        answerLabel.setVisible(true);
+        labelAnswer.setText("Mauvaise réponse! Ré-essai");
+        labelAnswer.setFont(new Font("Arial",Font.BOLD,60));
+        labelAnswer.setIcon(wrong);
+        labelAnswer.setIconTextGap(40);
+        labelAnswer.setVisible(true);
     }
 
     public void generateWindowSize(){
@@ -83,7 +92,7 @@ public class MainFrame extends JFrame implements ActionListener{
     //label.setVerticalTextPosition(JLabel.)
     label.setHorizontalAlignment(JLabel.CENTER);
     label.setVerticalAlignment(JLabel.TOP);
-    label.setFont(new Font("MV Boli",Font.BOLD,40));
+    label.setFont(new Font("MV Boli",Font.BOLD,50));
     label.setIconTextGap(40);
     label.setVisible(true);
     //label.setBorder(border);
@@ -98,7 +107,7 @@ public class MainFrame extends JFrame implements ActionListener{
     labelBottom.setPreferredSize(new Dimension(10, 50));
     labelBottom.setVisible(true);
 
-    answerLabel = new JLabel();
+    labelAnswer = new JLabel();
 
     firstButton = new JButton();
     //firstButton.setText(answerText);
@@ -202,9 +211,13 @@ public class MainFrame extends JFrame implements ActionListener{
     panelEast = new JPanel(new BorderLayout());
     panelWest = new JPanel(new BorderLayout());
 
+    panelCenterBottom = new JPanel(new BorderLayout());
+    panelCenterBottom.add(labelAnswer,BorderLayout.CENTER);
+
     panelCenter = new JPanel(new BorderLayout());
     panelCenter.setBackground(Color.red);
     panelCenter.setOpaque(true);
+    panelCenter.add(panelCenterBottom,BorderLayout.SOUTH);
 
     panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(100, 300));
