@@ -120,7 +120,12 @@ public class Main {
         toleranceBandColor = lastColor;
 
         String numberText = firstBandText + secondBandText;
-        answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";
+        int number = Integer.parseInt(numberText);
+        if(number == 0) {
+            answerText = "0Ω";
+        } else {
+            answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";
+        }
         System.out.println(answerText);
     }
 
