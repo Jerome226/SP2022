@@ -9,6 +9,7 @@ public class Main {
     public static String firstBandText;
     public static String secondBandText;
     public static int firstBand;
+    public static int number;
     public static int secondBand;
     public static String fakeAnswerText;
     public static int answerButton;
@@ -119,8 +120,7 @@ public class Main {
         toleranceBandColor = lastColor;
 
         String numberText = firstBandText + secondBandText;
-        int number = Integer.parseInt(numberText);
-        if(number == 0) {
+        if (numberText == "") {
             answerText = "0Ω";
         } else {
             answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";

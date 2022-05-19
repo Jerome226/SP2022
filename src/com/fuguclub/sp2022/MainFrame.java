@@ -9,6 +9,7 @@ import static com.fuguclub.sp2022.Main.*;
 
 public class MainFrame extends JFrame implements ActionListener{
 
+    ImageIcon resistor;
     JButton firstButton;
     JButton secondButton;
     JButton thirdButton;
@@ -24,10 +25,15 @@ public class MainFrame extends JFrame implements ActionListener{
     JPanel panelBottomCenter;
     JPanel panelBottomEast;
     JPanel panelBottomWest;
+    JPanel panelFirstBand;
+    JPanel panelSecondBand;
+    JPanel panelMultiplierBand;
+    JPanel panelToleranceBand;
     JLabel label;
     JLabel labelBottom;
     //JLabel labelBottom;
     JLabel labelAnswer;
+    JLabel labelResistor;
 
     public void rightAnswer(){
         System.out.println("init: rightAnswer");
@@ -128,13 +134,51 @@ public class MainFrame extends JFrame implements ActionListener{
     public void generateWindowSize(){
 
         int frameWidth = getWidth();
+        int frameHeight = getHeight();
+
         int buttonBorderWidth = frameWidth / 7;
+        int resistorWidth = buttonBorderWidth * 5;
+        int resistorHeight = frameHeight / 2;
+        int bandHeight = resistorHeight / 8;
+        int bandWidth = resistorWidth / 15;
 
         panelBottomEast.setPreferredSize(new Dimension(buttonBorderWidth, 100));
         panelBottomWest.setPreferredSize(new Dimension(buttonBorderWidth, 100));
         panelEast.setPreferredSize(new Dimension(buttonBorderWidth, 100));
         panelWest.setPreferredSize(new Dimension(buttonBorderWidth, 100));
 
+        ImageIcon resistorImage = new ImageIcon("resistor.png");
+        Image resistor2 = resistorImage.getImage();
+        Image resistorResized = resistor2.getScaledInstance(resistorWidth, resistorHeight, java.awt.Image.SCALE_FAST);
+        resistor = new ImageIcon(resistorResized);
+
+        labelResistor.setPreferredSize(new Dimension(resistorWidth, resistorHeight));
+        labelResistor.setLayout((new GridLayout(3, 8, bandWidth, bandHeight)));
+        labelResistor.setIcon(resistor);
+    }
+
+    public void generateBandPanel(){
+        System.out.println("init: generateBandPanel");
+
+        panelFirstBand = new JPanel();
+        panelFirstBand.setBackground(firstBandColor);
+        panelFirstBand.setOpaque(true);
+        panelFirstBand.setVisible(true);
+
+        panelSecondBand = new JPanel();
+        panelSecondBand.setBackground(secondBandColor);
+        panelSecondBand.setOpaque(true);
+        panelSecondBand.setVisible(true);
+
+        panelMultiplierBand = new JPanel();
+        panelMultiplierBand.setBackground(multiplierBandColor);
+        panelMultiplierBand.setOpaque(true);
+        panelMultiplierBand.setVisible(true);
+
+        panelToleranceBand = new JPanel();
+        panelToleranceBand.setBackground(toleranceBandColor);
+        panelToleranceBand.setOpaque(true);
+        panelToleranceBand.setVisible(true);
     }
 
     MainFrame(){
@@ -173,42 +217,79 @@ public class MainFrame extends JFrame implements ActionListener{
     labelBottom.setPreferredSize(new Dimension(10, 50));
     labelBottom.setVisible(true);
 
-    labelAnswer = new JLabel();
-    labelAnswer.setPreferredSize(new Dimension(80, 80));
-    labelAnswer.setHorizontalAlignment(JLabel.CENTER);
-    labelAnswer.setVerticalAlignment(JLabel.CENTER);
-
     firstButton = new JButton();
-    //firstButton.setText(answerText);
     firstButton.setFocusable(false);
     firstButton.addActionListener(this);
     firstButton.setVisible(true);
 
     secondButton = new JButton();
-    //secondButton.setText(answerText);
     secondButton.setFocusable(false);
     secondButton.addActionListener(this);
     secondButton.setVisible(true);
 
     thirdButton = new JButton();
-    //thirdButton.setText(answerText);
     thirdButton.setFocusable(false);
     thirdButton.addActionListener(this);
     thirdButton.setVisible(true);
 
     fourthButton = new JButton();
-    //thirdButton.setText(answerText);
     fourthButton.setFocusable(false);
     fourthButton.addActionListener(this);
     fourthButton.setVisible(true);
 
     fifthButton = new JButton();
-    //thirdButton.setText(answerText);
     fifthButton.setFocusable(false);
     fifthButton.addActionListener(this);
     fifthButton.setVisible(true);
 
     generateButtonText();
+
+    generateBandPanel();
+
+    JPanel nonVisiblePanel = new JPanel();
+    nonVisiblePanel.setVisible(false);
+    JPanel nonVisiblePanel2 = new JPanel();
+    nonVisiblePanel2.setVisible(false);
+    JPanel nonVisiblePanel3 = new JPanel();
+    nonVisiblePanel3.setVisible(false);
+    JPanel nonVisiblePanel4 = new JPanel();
+    nonVisiblePanel4.setVisible(false);
+
+    labelResistor = new JLabel();
+    labelResistor.setLayout((new GridLayout(3, 8, 50, 10)));
+    labelResistor.setPreferredSize(new Dimension(500, 600));
+    labelResistor.setHorizontalAlignment(JLabel.CENTER);
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+
+    labelResistor.add(nonVisiblePanel);
+    labelResistor.add(nonVisiblePanel2);
+    labelResistor.add(panelFirstBand);
+    labelResistor.add(panelSecondBand);
+    labelResistor.add(panelMultiplierBand);
+    labelResistor.add(panelToleranceBand);
+    labelResistor.add(nonVisiblePanel3);
+    labelResistor.add(nonVisiblePanel4);
+
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+    labelResistor.add(new JPanel());
+
+    labelAnswer = new JLabel();
+    labelAnswer.setPreferredSize(new Dimension(80, 80));
+    labelAnswer.setHorizontalAlignment(JLabel.CENTER);
+    labelAnswer.setVerticalAlignment(JLabel.CENTER);
 
     //GUI
     this.setTitle("School Project 2022");
@@ -248,11 +329,10 @@ public class MainFrame extends JFrame implements ActionListener{
     panelCenterBottom.add(labelAnswer,BorderLayout.CENTER);
 
     panelCenter = new JPanel(new BorderLayout());
-    panelCenter.setBackground(Color.red);
+    //panelCenter.setBackground(Color.red);
     panelCenter.setOpaque(true);
     panelCenter.add(panelCenterBottom,BorderLayout.SOUTH);
-    //panelCenter.add(panelCenterCenter,BorderLayout.CENTER);
-    //panelCenter.add(label,BorderLayout.NORTH);
+    panelCenter.add(labelResistor,BorderLayout.NORTH);
 
     panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(100, 300));
