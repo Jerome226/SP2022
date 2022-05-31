@@ -104,7 +104,7 @@ public class Main {
             firstBand = bandNumber - 1;
             firstBandText = String.valueOf(firstBand);
         } else {
-            firstBandText = "0";
+            firstBandText = "";
         }
         firstBandColor = color;
 
