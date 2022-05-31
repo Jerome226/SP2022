@@ -13,12 +13,14 @@ public class MainFrame extends JFrame implements ActionListener{
     public static ImageIcon icon;
     public static JTextField textField;
     public static JButton textFieldButton;
+    public static JButton retryButton;
     public static JButton firstButton;
     public static JButton secondButton;
     public static JButton thirdButton;
     public static JButton fourthButton;
     public static JButton fifthButton;
     public static JPanel panel;
+    public static JPanel panelTolerance;
     public static JPanel panelCenter;
     public static JPanel panelCenterBottom;
     public static JPanel panelEast;
@@ -26,6 +28,7 @@ public class MainFrame extends JFrame implements ActionListener{
     public static JPanel panelBottom;
     public static JPanel panelBottomBottom;
     public static JPanel panelBottomCenter;
+    public static JPanel panelBottomCenterRetry;
     public static JPanel panelBottomEast;
     public static JPanel panelBottomWest;
     public static JPanel panelFirstBand;
@@ -37,6 +40,14 @@ public class MainFrame extends JFrame implements ActionListener{
     //JLabel labelBottom;
     public static JLabel labelAnswer;
     public static JLabel labelResistor;
+    public static JPanel nonVisiblePanel;
+    public static JPanel nonVisiblePanel2;
+    public static JPanel nonVisiblePanel3;
+    public static JPanel nonVisiblePanel4;
+    public static JRadioButton firstChoice;
+    public static JRadioButton secondChoice;
+    public static JRadioButton thirdChoice;
+    public static boolean isRightTolerance;
 
     public void rightAnswer(){
         System.out.println("init: rightAnswer");
@@ -51,6 +62,8 @@ public class MainFrame extends JFrame implements ActionListener{
         labelAnswer.setIcon(checkmark);
         labelAnswer.setIconTextGap(40);
         labelAnswer.setVisible(true);
+
+        generateRetryButton();
     }
 
     public void wrongAnswer(){
@@ -66,6 +79,8 @@ public class MainFrame extends JFrame implements ActionListener{
         labelAnswer.setIcon(wrong);
         labelAnswer.setIconTextGap(40);
         labelAnswer.setVisible(true);
+
+        generateRetryButton();
     }
 
     public static void generateButtonAnswer(){
@@ -184,6 +199,16 @@ public class MainFrame extends JFrame implements ActionListener{
         panelToleranceBand.setVisible(true);
     }
 
+    public static void generateRetryButton(){
+        System.out.println("init: generateRetryButton");
+        labelBottom.setText("");
+        panelBottomCenterRetry = new JPanel(new GridBagLayout());
+        panelBottomCenterRetry.add(retryButton, new GridBagConstraints());
+        panelBottomCenterRetry.setVisible(true);
+        panelBottom.add(panelBottomCenterRetry,BorderLayout.CENTER);
+        panelBottomCenter.setVisible(false);
+    }
+
     MainFrame(){
     System.out.println("init: MainFrame");
 
@@ -211,6 +236,13 @@ public class MainFrame extends JFrame implements ActionListener{
     //label.setBorder(border);
     label.setPreferredSize(new Dimension(300, 100));
 
+    retryButton = new JButton();
+    retryButton.setText("Fermer le programme");
+    retryButton.setPreferredSize(new Dimension(250,80));
+    retryButton.setFocusable(true);
+    retryButton.addActionListener(this);
+    retryButton.setVisible(true);
+
     labelBottom = new JLabel();
     labelBottom.setText("Choisi la bonne réponse");
     labelBottom.setFont(new Font("MV Boli",Font.BOLD,20));
@@ -228,7 +260,9 @@ public class MainFrame extends JFrame implements ActionListener{
 
     textField = new JTextField();
     textField.setPreferredSize(new Dimension(250,40));
-    textField.setFont(new Font("Arial",Font.PLAIN,35));
+    textField.setText("Cliquez pour écrire du texte");
+    textField.addFocusListener(new textFieldFocus());
+    textField.setFont(new Font("Arial",Font.PLAIN,25));
     textField.setForeground(Color.BLACK);
     textField.setBackground(Color.WHITE);
     textField.setCaretColor(Color.BLACK);
@@ -261,13 +295,13 @@ public class MainFrame extends JFrame implements ActionListener{
     generateButtonAnswer();
     generateBandColor();
 
-    JPanel nonVisiblePanel = new JPanel();
+    nonVisiblePanel = new JPanel();
     nonVisiblePanel.setVisible(false);
-    JPanel nonVisiblePanel2 = new JPanel();
+    nonVisiblePanel2 = new JPanel();
     nonVisiblePanel2.setVisible(false);
-    JPanel nonVisiblePanel3 = new JPanel();
+    nonVisiblePanel3 = new JPanel();
     nonVisiblePanel3.setVisible(false);
-    JPanel nonVisiblePanel4 = new JPanel();
+    nonVisiblePanel4 = new JPanel();
     nonVisiblePanel4.setVisible(false);
 
     labelResistor = new JLabel();
@@ -320,6 +354,24 @@ public class MainFrame extends JFrame implements ActionListener{
     panelBottomEast = new JPanel(new BorderLayout());
     panelBottomWest = new JPanel(new BorderLayout());
 
+    firstChoice = new JRadioButton("∓5%");
+    firstChoice.addActionListener(this);
+    secondChoice = new JRadioButton("∓10%");
+    secondChoice.addActionListener(this);
+    thirdChoice = new JRadioButton("∓20%");
+    thirdChoice.addActionListener(this);
+
+    ButtonGroup group = new ButtonGroup();
+    group.add(firstChoice);
+    group.add(secondChoice);
+    group.add(thirdChoice);
+
+    panelTolerance = new JPanel(new GridLayout(3, 1, 1, 1));
+    panelTolerance.add(firstChoice);
+    panelTolerance.add(secondChoice);
+    panelTolerance.add(thirdChoice);
+    panelTolerance.setVisible(true);
+
     panelBottom = new JPanel(new BorderLayout());
     panelBottom.setPreferredSize(new Dimension(50, 200));
     panelBottom.setBorder(border);
@@ -355,7 +407,8 @@ public class MainFrame extends JFrame implements ActionListener{
     this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setContentPane(panel);
     this.setVisible(true);
-        //this.add(answerLabel,BorderLayout.SOUTH);
+    this.setAlwaysOnTop(true);
+    this.setAlwaysOnTop(false);
 
     }
 
@@ -390,16 +443,57 @@ public class MainFrame extends JFrame implements ActionListener{
         }
     }
 
+    public class textFieldFocus implements FocusListener {
+        @Override
+        public void focusGained(FocusEvent e) {
+            textField.setText("");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource()==firstChoice) {
+            if(toleranceBand.equals("∓5%")) {
+                isRightTolerance = true;
+            } else {
+                isRightTolerance = false;
+
+            }
+        }
+
+        if(e.getSource()==secondChoice) {
+            if(toleranceBand.equals("∓10%")) {
+                isRightTolerance = true;
+            } else {
+                isRightTolerance = false;
+            }
+        }
+
+        if(e.getSource()==thirdChoice) {
+            if(toleranceBand.equals("∓20%")) {
+                isRightTolerance = true;
+            } else {
+                isRightTolerance = false;
+            }
+        }
+
         if(e.getSource()==textFieldButton){
-            if(textField.getText().equals(rawAnswerText)) {
+            if(textField.getText().equals(rawAnswerText) && isRightTolerance) {
                 rightAnswer();
             } else {
                 wrongAnswer();
                 System.out.println(rawAnswerText);
             }
+        }
+
+        if(e.getSource()==retryButton){
+            System.out.println("closing program");
+            mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
         }
 
         if(e.getSource()==firstButton) {

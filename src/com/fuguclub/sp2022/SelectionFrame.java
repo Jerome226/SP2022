@@ -25,6 +25,8 @@ public class SelectionFrame extends JFrame implements ActionListener {
     this.setResizable(true);
     this.setSize(600,300);
 
+    this.setAlwaysOnTop(true);
+
     label = new JLabel();
     label.setHorizontalAlignment(JLabel.CENTER);
     label.setVerticalAlignment(JLabel.NORTH);
@@ -33,10 +35,12 @@ public class SelectionFrame extends JFrame implements ActionListener {
     label.setText("Choisir la difficulté");
 
     easyButton = new JButton();
+    easyButton.setText("Mode Facile");
     easyButton.addActionListener(this);
     easyButton.setPreferredSize(new Dimension(200, 100));
 
     hardButton = new JButton();
+    hardButton.setText("Mode Difficile");
     hardButton.addActionListener(this);
     hardButton.setPreferredSize(new Dimension(200, 100));
 
@@ -51,7 +55,7 @@ public class SelectionFrame extends JFrame implements ActionListener {
     panelCenter = new JPanel(new GridBagLayout());
     panelCenter.add(buttonPanel, new GridBagConstraints());
 
-    //this.setIconImage(icon.getImage());
+    this.setIconImage(icon.getImage());
     this.getContentPane().setBackground(Color.WHITE);
     //this.pack();
     this.setLocationRelativeTo(null);
@@ -68,7 +72,6 @@ public class SelectionFrame extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==hardButton) {
-            this.setVisible(false);
             hardMode();
         }
 

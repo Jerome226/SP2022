@@ -26,6 +26,9 @@ public class Main {
     public static Color secondBandColor;
     public static Color multiplierBandColor;
     public static Color toleranceBandColor;
+    public static String multiplierBand;
+    public static String toleranceBand;
+    public static String numberText;
 
     public static void generateMainValues(){
         System.out.println("init: generateMainValues");
@@ -39,31 +42,31 @@ public class Main {
                 break;
             case 2:
                 multiplier = "0";
-                color = new Color(69, 42, 14);
+                color = new Color(61, 34, 0);
                 break;
             case 3:
                 multiplier = "00";
-                color = Color.red;
+                color = new Color(255, 0, 0);
                 break;
             case 4:
                 multiplier = "000";
-                color = Color.orange;
+                color = new Color(248, 128, 7);
                 break;
             case 5:
                 multiplier = "0000";
-                color = Color.yellow;
+                color = new Color(255, 251, 0);
                 break;
             case 6:
                 multiplier = "00000";
-                color = Color.green;
+                color = new Color(29, 129, 18);
                 break;
             case 7:
                 multiplier = "000000";
-                color = Color.blue;
+                color = new Color(0, 78, 194, 136);
                 break;
             case 8:
                 multiplier = "0000000";
-                color = new Color(218, 66, 245);
+                color = new Color(91, 14, 107);
                 break;
             case 9:
                 multiplier = "00000000";
@@ -115,14 +118,14 @@ public class Main {
         secondBandColor = color;
 
         generateMainValues();
-        String multiplierBand = multiplier;
+        multiplierBand = multiplier;
         multiplierBandColor = color;
 
         generateMainValues();
-        String toleranceBand = tolerance;
+        toleranceBand = tolerance;
         toleranceBandColor = lastColor;
 
-        String numberText = firstBandText + secondBandText;
+        numberText = firstBandText + secondBandText;
         if (numberText.equals("")) {
             answerText = "0Ω";
             rawAnswerText = "0";
@@ -154,10 +157,10 @@ public class Main {
     rand = new Random();
 
     //Frame
-    selectionFrame = new SelectionFrame();
-
     mainFrame = new MainFrame();
     MainFrame.panelBottom.setVisible(false);
+
+    selectionFrame = new SelectionFrame();
 
     }
 
@@ -165,12 +168,12 @@ public class Main {
         Main.selectionFrame.setVisible(false);
         MainFrame.panelBottom.setVisible(true);
         MainFrame.panelBottomCenter = new JPanel(new GridLayout(1, 5, 20, 20));
-        MainFrame.panelBottomCenter.setVisible(true);
         MainFrame.panelBottomCenter.add(firstButton);
         MainFrame.panelBottomCenter.add(secondButton);
         MainFrame.panelBottomCenter.add(thirdButton);
         MainFrame.panelBottomCenter.add(fourthButton);
         MainFrame.panelBottomCenter.add(fifthButton);
+        MainFrame.panelBottomCenter.setVisible(true);
         MainFrame.panelBottom.add(panelBottomCenter,BorderLayout.CENTER);
         MainFrame.panelCenter.add(labelResistor,BorderLayout.NORTH);
 
@@ -179,15 +182,16 @@ public class Main {
     public static void hardMode(){
         Main.selectionFrame.setVisible(false);
         MainFrame.panelBottom.setVisible(true);
-        MainFrame.panelBottomCenter = new JPanel(new GridLayout(1, 2, 20, 20));
-        MainFrame.panelBottomCenter.setVisible(true);
+        MainFrame.panelBottomEast.setPreferredSize(new Dimension(500, 100));
+        MainFrame.panelBottomWest.setPreferredSize(new Dimension(500, 100));
+        MainFrame.panelBottomCenter = new JPanel(new GridLayout(1, 3, 20, 20));
         MainFrame.panelBottomCenter.add(textField);
+        MainFrame.panelBottomCenter.add(panelTolerance);
         MainFrame.panelBottomCenter.add(textFieldButton);
+        MainFrame.panelBottomCenter.setVisible(true);
         MainFrame.panelBottom.add(panelBottomCenter,BorderLayout.CENTER);
         MainFrame.panelCenter.add(labelResistor,BorderLayout.NORTH);
 
     }
-
-
 
 }
