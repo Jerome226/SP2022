@@ -126,7 +126,7 @@ public class Main {
         toleranceBandColor = lastColor;
 
         numberText = firstBandText + secondBandText;
-        if (numberText.equals("")) {
+        if (numberText.equals("") || numberText.equals("00")) {
             answerText = "0Ω";
             rawAnswerText = "0";
         } else {
