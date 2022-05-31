@@ -52,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener{
     public void rightAnswer(){
         System.out.println("init: rightAnswer");
 
-        ImageIcon checkmarkImage = new ImageIcon("checkmark.png");
+        ImageIcon checkmarkImage = new ImageIcon("./src/com/fuguclub/sp2022/images/checkmark.png");
         Image checkmark2 = checkmarkImage.getImage();
         Image checkmarkResized = checkmark2.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
         ImageIcon checkmark = new ImageIcon(checkmarkResized);
@@ -69,7 +69,7 @@ public class MainFrame extends JFrame implements ActionListener{
     public void wrongAnswer(){
         System.out.println("init: wrongAnswer");
 
-        ImageIcon wrongImage = new ImageIcon("wrong.png");
+        ImageIcon wrongImage = new ImageIcon("./src/com/fuguclub/sp2022/images/wrong.png");
         Image wrong2 = wrongImage.getImage();
         Image wrongResized = wrong2.getScaledInstance(80, 80, java.awt.Image.SCALE_SMOOTH);
         ImageIcon wrong = new ImageIcon(wrongResized);
@@ -165,7 +165,7 @@ public class MainFrame extends JFrame implements ActionListener{
         panelEast.setPreferredSize(new Dimension(buttonBorderWidth, 100));
         panelWest.setPreferredSize(new Dimension(buttonBorderWidth, 100));
 
-        ImageIcon resistorImage = new ImageIcon("resistor.png");
+        ImageIcon resistorImage = new ImageIcon("./src/com/fuguclub/sp2022/images/resistor.png");
         Image resistor2 = resistorImage.getImage();
         Image resistorResized = resistor2.getScaledInstance(resistorWidth, resistorHeight, java.awt.Image.SCALE_FAST);
         resistor = new ImageIcon(resistorResized);
@@ -212,7 +212,7 @@ public class MainFrame extends JFrame implements ActionListener{
     MainFrame(){
     System.out.println("init: MainFrame");
 
-    ImageIcon iconImage = new ImageIcon("icon.png");
+    ImageIcon iconImage = new ImageIcon("./src/com/fuguclub/sp2022/images/icon.png");
     Image icon2 = iconImage.getImage();
     Image iconResized = icon2.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
     icon = new ImageIcon(iconResized);
