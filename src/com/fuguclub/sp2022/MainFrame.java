@@ -4,6 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import static com.fuguclub.sp2022.Main.*;
 
@@ -209,6 +213,25 @@ public class MainFrame extends JFrame implements ActionListener{
         panelBottomCenter.setVisible(false);
     }
 
+    public void restartApplication() throws IOException, URISyntaxException {
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        final File currentJar = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+        /* is it a jar file? */
+        if(!currentJar.getName().endsWith(".jar"))
+            return;
+
+        /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add("-jar");
+        command.add(currentJar.getPath());
+
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        builder.start();
+        System.exit(0);
+    }
+
     MainFrame(){
     System.out.println("init: MainFrame");
 
@@ -237,7 +260,7 @@ public class MainFrame extends JFrame implements ActionListener{
     label.setPreferredSize(new Dimension(300, 100));
 
     retryButton = new JButton();
-    retryButton.setText("Fermer le programme");
+    retryButton.setText("Ré-essayer");
     retryButton.setPreferredSize(new Dimension(250,80));
     retryButton.setFocusable(true);
     retryButton.addActionListener(this);
@@ -493,7 +516,12 @@ public class MainFrame extends JFrame implements ActionListener{
 
         if(e.getSource()==retryButton){
             System.out.println("closing program");
-            mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
+            try {
+                restartApplication();
+            } catch (IOException | URISyntaxException ex) {
+                throw new RuntimeException(ex);
+            }
+            //mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
         }
 
         if(e.getSource()==firstButton) {
