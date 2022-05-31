@@ -1,15 +1,18 @@
 package com.fuguclub.sp2022;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+
+import static com.fuguclub.sp2022.MainFrame.*;
 
 public class Main {
     public static Random rand;
     public static String answerText;
+    public static String rawAnswerText;
     public static String firstBandText;
     public static String secondBandText;
     public static int firstBand;
-    public static int number;
     public static int secondBand;
     public static String fakeAnswerText;
     public static int answerButton;
@@ -120,10 +123,12 @@ public class Main {
         toleranceBandColor = lastColor;
 
         String numberText = firstBandText + secondBandText;
-        if (numberText == "") {
+        if (numberText.equals("")) {
             answerText = "0Ω";
+            rawAnswerText = "0";
         } else {
             answerText = numberText + multiplierBand + "Ω (Tolérance: " + toleranceBand + ")";
+            rawAnswerText = numberText + multiplierBand;
         }
         System.out.println("answerText: " + answerText);
     }
@@ -140,14 +145,49 @@ public class Main {
         System.out.println("fakeAnswerText: " + fakeAnswerText);
     }
 
+    public static MainFrame mainFrame;
+    public static SelectionFrame selectionFrame;
+
     public static void main(String[] args) {
     System.out.println("init: Main");
 
     rand = new Random();
 
     //Frame
-    MainFrame frame = new MainFrame();
+    selectionFrame = new SelectionFrame();
+
+    mainFrame = new MainFrame();
+    MainFrame.panelBottom.setVisible(false);
 
     }
+
+    public static void easyMode(){
+        Main.selectionFrame.setVisible(false);
+        MainFrame.panelBottom.setVisible(true);
+        MainFrame.panelBottomCenter = new JPanel(new GridLayout(1, 5, 20, 20));
+        MainFrame.panelBottomCenter.setVisible(true);
+        MainFrame.panelBottomCenter.add(firstButton);
+        MainFrame.panelBottomCenter.add(secondButton);
+        MainFrame.panelBottomCenter.add(thirdButton);
+        MainFrame.panelBottomCenter.add(fourthButton);
+        MainFrame.panelBottomCenter.add(fifthButton);
+        MainFrame.panelBottom.add(panelBottomCenter,BorderLayout.CENTER);
+        MainFrame.panelCenter.add(labelResistor,BorderLayout.NORTH);
+
+    }
+
+    public static void hardMode(){
+        Main.selectionFrame.setVisible(false);
+        MainFrame.panelBottom.setVisible(true);
+        MainFrame.panelBottomCenter = new JPanel(new GridLayout(1, 2, 20, 20));
+        MainFrame.panelBottomCenter.setVisible(true);
+        MainFrame.panelBottomCenter.add(textField);
+        MainFrame.panelBottomCenter.add(textFieldButton);
+        MainFrame.panelBottom.add(panelBottomCenter,BorderLayout.CENTER);
+        MainFrame.panelCenter.add(labelResistor,BorderLayout.NORTH);
+
+    }
+
+
 
 }

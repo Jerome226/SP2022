@@ -9,31 +9,34 @@ import static com.fuguclub.sp2022.Main.*;
 
 public class MainFrame extends JFrame implements ActionListener{
 
-    ImageIcon resistor;
-    JButton firstButton;
-    JButton secondButton;
-    JButton thirdButton;
-    JButton fourthButton;
-    JButton fifthButton;
-    JPanel panel;
-    JPanel panelCenter;
-    JPanel panelCenterBottom;
-    JPanel panelEast;
-    JPanel panelWest;
-    JPanel panelBottom;
-    JPanel panelBottomBottom;
-    JPanel panelBottomCenter;
-    JPanel panelBottomEast;
-    JPanel panelBottomWest;
-    JPanel panelFirstBand;
-    JPanel panelSecondBand;
-    JPanel panelMultiplierBand;
-    JPanel panelToleranceBand;
-    JLabel label;
-    JLabel labelBottom;
+    public static ImageIcon resistor;
+    public static ImageIcon icon;
+    public static JTextField textField;
+    public static JButton textFieldButton;
+    public static JButton firstButton;
+    public static JButton secondButton;
+    public static JButton thirdButton;
+    public static JButton fourthButton;
+    public static JButton fifthButton;
+    public static JPanel panel;
+    public static JPanel panelCenter;
+    public static JPanel panelCenterBottom;
+    public static JPanel panelEast;
+    public static JPanel panelWest;
+    public static JPanel panelBottom;
+    public static JPanel panelBottomBottom;
+    public static JPanel panelBottomCenter;
+    public static JPanel panelBottomEast;
+    public static JPanel panelBottomWest;
+    public static JPanel panelFirstBand;
+    public static JPanel panelSecondBand;
+    public static JPanel panelMultiplierBand;
+    public static JPanel panelToleranceBand;
+    public static JLabel label;
+    public static JLabel labelBottom;
     //JLabel labelBottom;
-    JLabel labelAnswer;
-    JLabel labelResistor;
+    public static JLabel labelAnswer;
+    public static JLabel labelResistor;
 
     public void rightAnswer(){
         System.out.println("init: rightAnswer");
@@ -65,7 +68,7 @@ public class MainFrame extends JFrame implements ActionListener{
         labelAnswer.setVisible(true);
     }
 
-    public void generateAnswer(){
+    public static void generateButtonAnswer(){
         System.out.println("init: generateAnswer");
 
         answerButton = rand.nextInt((5 - 1) + 1) + 1;
@@ -157,7 +160,7 @@ public class MainFrame extends JFrame implements ActionListener{
         labelResistor.setIcon(resistor);
     }
 
-    public void generateBandColor(){
+    public static void generateBandColor(){
         System.out.println("init: generateBandColor");
 
         panelFirstBand = new JPanel();
@@ -187,7 +190,7 @@ public class MainFrame extends JFrame implements ActionListener{
     ImageIcon iconImage = new ImageIcon("icon.png");
     Image icon2 = iconImage.getImage();
     Image iconResized = icon2.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-    ImageIcon icon = new ImageIcon(iconResized);
+    icon = new ImageIcon(iconResized);
 
     Border border = BorderFactory.createLineBorder(Color.BLACK,10,false);
     //System.out.println(randomNum2);
@@ -217,6 +220,19 @@ public class MainFrame extends JFrame implements ActionListener{
     labelBottom.setPreferredSize(new Dimension(10, 50));
     labelBottom.setVisible(true);
 
+    textFieldButton = new JButton();
+    textFieldButton.setFocusable(false);
+    textFieldButton.addActionListener(this);
+    textFieldButton.setText("Confirmer");
+    textFieldButton.setVisible(true);
+
+    textField = new JTextField();
+    textField.setPreferredSize(new Dimension(250,40));
+    textField.setFont(new Font("Arial",Font.PLAIN,35));
+    textField.setForeground(Color.BLACK);
+    textField.setBackground(Color.WHITE);
+    textField.setCaretColor(Color.BLACK);
+
     firstButton = new JButton();
     firstButton.setFocusable(false);
     firstButton.addActionListener(this);
@@ -242,8 +258,7 @@ public class MainFrame extends JFrame implements ActionListener{
     fifthButton.addActionListener(this);
     fifthButton.setVisible(true);
 
-    generateAnswer();
-
+    generateButtonAnswer();
     generateBandColor();
 
     JPanel nonVisiblePanel = new JPanel();
@@ -300,13 +315,6 @@ public class MainFrame extends JFrame implements ActionListener{
     this.setIconImage(icon.getImage());
     this.getContentPane().setBackground(Color.WHITE);
 
-    panelBottomCenter = new JPanel(new GridLayout(1, 5, 20, 20));
-    panelBottomCenter.add(firstButton);
-    panelBottomCenter.add(secondButton);
-    panelBottomCenter.add(thirdButton);
-    panelBottomCenter.add(fourthButton);
-    panelBottomCenter.add(fifthButton);
-
     panelBottomBottom = new JPanel(new BorderLayout());
     panelBottomBottom.setPreferredSize(new Dimension(100, 50));
     panelBottomEast = new JPanel(new BorderLayout());
@@ -317,7 +325,6 @@ public class MainFrame extends JFrame implements ActionListener{
     panelBottom.setBorder(border);
     panelBottom.add(labelBottom,BorderLayout.NORTH);
     //panelBottom.add(secondButton,BorderLayout.CENTER);
-    panelBottom.add(panelBottomCenter,BorderLayout.CENTER);
     panelBottom.add(panelBottomBottom,BorderLayout.SOUTH);
     panelBottom.add(panelBottomEast,BorderLayout.EAST);
     panelBottom.add(panelBottomWest,BorderLayout.WEST);
@@ -332,7 +339,6 @@ public class MainFrame extends JFrame implements ActionListener{
     //panelCenter.setBackground(Color.red);
     panelCenter.setOpaque(true);
     panelCenter.add(panelCenterBottom,BorderLayout.SOUTH);
-    panelCenter.add(labelResistor,BorderLayout.NORTH);
 
     panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(100, 300));
@@ -345,7 +351,8 @@ public class MainFrame extends JFrame implements ActionListener{
     generateWindowSize();
     this.addComponentListener(new frameResized());
     this.addWindowStateListener(new frameResizedIcon());
-
+    this.setLocationRelativeTo(null);
+    this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     this.setContentPane(panel);
     this.setVisible(true);
         //this.add(answerLabel,BorderLayout.SOUTH);
@@ -385,6 +392,16 @@ public class MainFrame extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if(e.getSource()==textFieldButton){
+            if(textField.getText().equals(rawAnswerText)) {
+                rightAnswer();
+            } else {
+                wrongAnswer();
+                System.out.println(rawAnswerText);
+            }
+        }
+
         if(e.getSource()==firstButton) {
             if(answerButton == 1) {
                 rightAnswer();
