@@ -36,11 +36,13 @@ public class SelectionFrame extends JFrame implements ActionListener {
 
     easyButton = new JButton();
     easyButton.setText("Mode Facile");
+    easyButton.setFocusable(false);
     easyButton.addActionListener(this);
     easyButton.setPreferredSize(new Dimension(200, 100));
 
     hardButton = new JButton();
     hardButton.setText("Mode Difficile");
+    hardButton.setFocusable(false);
     hardButton.addActionListener(this);
     hardButton.setPreferredSize(new Dimension(200, 100));
 

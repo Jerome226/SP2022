@@ -262,7 +262,7 @@ public class MainFrame extends JFrame implements ActionListener{
     retryButton = new JButton();
     retryButton.setText("Ré-essayer");
     retryButton.setPreferredSize(new Dimension(250,80));
-    retryButton.setFocusable(true);
+    retryButton.setFocusable(false);
     retryButton.addActionListener(this);
     retryButton.setVisible(true);
 
