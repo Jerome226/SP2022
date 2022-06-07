@@ -245,7 +245,7 @@ public class MainFrame extends JFrame implements ActionListener{
 
     //Title
     label = new JLabel();
-    label.setText("Calculateur de Resistance");
+    label.setText("Calculateur de Résistance");
     label.setIcon(icon);
     label.setSize(new Dimension(100, 100));
     //label.setToolTipText("test");
@@ -267,7 +267,7 @@ public class MainFrame extends JFrame implements ActionListener{
     retryButton.setVisible(true);
 
     labelBottom = new JLabel();
-    labelBottom.setText("Choisi la bonne réponse");
+    labelBottom.setText("Choisis la bonne réponse");
     labelBottom.setFont(new Font("MV Boli",Font.BOLD,20));
     labelBottom.setVerticalAlignment(JLabel.TOP);
     labelBottom.setHorizontalAlignment(JLabel.CENTER);
